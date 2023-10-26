@@ -1,2 +1,2 @@
 # IstanbulKodluyor
-Bu repository "IStanbul Kodluyor" projesinin dosyalarını içermektedir.
+Bu repository "Istanbul Kodluyor" projesinin dosyalarını içermektedir.
