@@ -155,6 +155,7 @@ class _QuizState extends State<QuizScreen> {
                   border: Border.all(width: 10, color: Colors.deepPurple),
                   borderRadius: BorderRadius.circular(15),
                 ),
+                width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
                     changeText();
