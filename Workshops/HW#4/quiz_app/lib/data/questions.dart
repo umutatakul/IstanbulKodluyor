@@ -5,7 +5,7 @@ import 'package:quiz_app/models/question_model.dart';
 const questions = [
   QuestionModel("Quizimize hoş geldiniz. Hazırsanız başlayalım", ["Başla"]),
   QuestionModel("Aşağıdakilerden hangisi bir widget türüdür?",
-      ["1 Statefull", "Constructor", "Class", "Const"]),
+      ["Statefull", "Constructor", "Class", "Const"]),
   QuestionModel("What is Flutter?", [
     "Flutter is an open-source backend development framework",
     "Flutter is an open-source UI toolkit",

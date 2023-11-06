@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:quiz_app/data/questions.dart';
 
 void main() {
   runApp(const MaterialApp(home: QuizScreen()));
 }
 
+Widget soruText(String gelenText) {
+  return Text(
+    gelenText,
+    style: GoogleFonts.robotoCondensed(fontSize: 32, color: Colors.white),
+    textAlign: TextAlign.center,
+  );
+}
 // boilerplate => basmakalıp (kodlar)
 
 class HomeScreen extends StatelessWidget {
@@ -73,14 +81,35 @@ class QuizScreen extends StatefulWidget {
 }
 
 class _QuizState extends State<QuizScreen> {
-  String text = "";
+  String text = "Başlamak için tıklayınız";
   int kacinciSoru = 0;
+  bool girisResminiGoster = true;
+  bool cikisResminiGoster = false;
+
+  Widget girisResminiGosterFun() {
+    if (girisResminiGoster) {
+      return Image.asset("assets/images/quiz-logo.png");
+    } else {
+      return const Text("");
+    }
+  }
+
+  Widget cikisResminiGosterFun() {
+    if (cikisResminiGoster) {
+      return Image.asset("assets/images/alkisResmi.png");
+    } else {
+      return const Text("");
+    }
+  }
 
   void changeText() {
     // text = "Butona Tıklandı";
-
+    girisResminiGoster = false;
     if (kacinciSoru < questions.length - 1) {
       kacinciSoru++;
+    }
+    if (kacinciSoru == questions.length - 1) {
+      cikisResminiGoster = true;
     }
     setState(() {
       text = questions[kacinciSoru].question;
@@ -90,21 +119,57 @@ class _QuizState extends State<QuizScreen> {
   @override
   Widget build(BuildContext buildContext) {
     return Scaffold(
-      body: Center(
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(text),
-          ...questions[kacinciSoru].answers.map((answer) {
-            return ElevatedButton(
-              onPressed: () {
-                changeText();
-              },
-              child: Text(answer),
-            );
-          })
-        ],
-      )),
+      appBar: AppBar(
+        backgroundColor: Colors.purple,
+        title: const Text(
+          "Flutter Quiz App",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 28,
+          ),
+        ),
+      ),
+      body: Container(
+        decoration: BoxDecoration(
+          color: Colors.purple.shade800,
+        ),
+        child: Center(
+            child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            girisResminiGosterFun(),
+            cikisResminiGosterFun(),
+            Container(
+              decoration: BoxDecoration(
+                  border: Border.all(width: 10, color: Colors.purpleAccent),
+                  borderRadius: BorderRadius.circular(30),
+                  color: Colors.purple.shade700),
+              padding: EdgeInsets.all(10),
+              child: soruText(
+                text,
+              ),
+            ),
+            ...questions[kacinciSoru].answers.map((answer) {
+              return Container(
+                decoration: BoxDecoration(
+                  border: Border.all(width: 10, color: Colors.deepPurple),
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                child: ElevatedButton(
+                  onPressed: () {
+                    changeText();
+                  },
+                  child: Text(
+                    answer,
+                    style:
+                        GoogleFonts.roboto(fontSize: 22, color: Colors.white),
+                  ),
+                ),
+              );
+            })
+          ],
+        )),
+      ),
     );
   }
 }
