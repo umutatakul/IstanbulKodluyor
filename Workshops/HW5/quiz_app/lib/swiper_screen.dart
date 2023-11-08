@@ -20,9 +20,10 @@ class _SwiperScreenState extends State<SwiperScreen> {
     });
   }
 
-  goToResult() {
+  void goToResult() {
     setState(() {
-      activeScreenName == "result-screen";
+      activeScreenName = "result-screen";
+      print("Son ekrana gidildi");
     });
   }
 
@@ -30,9 +31,11 @@ class _SwiperScreenState extends State<SwiperScreen> {
   Widget build(BuildContext context) {
     Widget activeScreen = HomeScreen(goToQuiz);
     if (activeScreenName == "quiz-screen") {
-      activeScreen = QuizScreen();
-    } else if (activeScreenName == "result-screem") {
-      activeScreen = const ResultScreen();
+      activeScreen = QuizScreen(goToResult);
+    }
+    if (activeScreenName == "result-screen") {
+      activeScreen = ResultScreen();
+      print("Son ekran build edildi");
     }
 
     return Container(
