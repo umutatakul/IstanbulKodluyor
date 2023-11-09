@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:quiz_app/data/answers.dart';
+import 'package:quiz_app/renkler.dart';
 
 import 'data/questions.dart';
 
@@ -26,6 +29,7 @@ class _QuizState extends State<QuizScreen> {
 
   void changeQuestionOrScreen() {
     print(bittiMi);
+
     setState(() {
       if (questions.length - 1 > selectedQuestionIndex) {
         selectedQuestionIndex++;
@@ -39,22 +43,55 @@ class _QuizState extends State<QuizScreen> {
   @override
   Widget build(BuildContext buildContext) {
     return Scaffold(
+      backgroundColor: Renkler().maviBir,
       body: Center(
         child: Container(
-          margin: const EdgeInsets.all(40),
+          decoration: BoxDecoration(color: Renkler().maviBes),
+          padding: EdgeInsets.all(40),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(questions[selectedQuestionIndex].question),
+              Container(
+                decoration: BoxDecoration(color: Renkler().maviUc),
+                margin: EdgeInsets.only(bottom: 50),
+                padding: const EdgeInsets.all(10),
+                child: Text(
+                  questions[selectedQuestionIndex].question,
+                  style: const TextStyle(color: Colors.white, fontSize: 22),
+                ),
+              ),
+              //Text(questions[selectedQuestionIndex].question),
+
               ...questions[selectedQuestionIndex].answers.map((answer) {
-                return ElevatedButton(
+                return Container(
+                  margin: EdgeInsets.fromLTRB(0, 0, 0, 20),
+                  decoration: BoxDecoration(
+                    border: Border.all(width: 10, color: Colors.white70),
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  width: double.infinity,
+                  child: ElevatedButton(
                     onPressed: () {
                       changeQuestionOrScreen();
                       if (bittiMi) arrivedLastQuestionCheck();
                     },
-                    child: Text(answer));
+                    child: Text(
+                      answer,
+                      style:
+                          GoogleFonts.roboto(fontSize: 22, color: Colors.white),
+                    ),
+                  ),
+                );
               })
+              // ...questions[selectedQuestionIndex].answers.map((answer) {
+              //   return ElevatedButton(
+              //       onPressed: () {
+              //         changeQuestionOrScreen();
+              //         if (bittiMi) arrivedLastQuestionCheck();
+              //       },
+              //       child: Text(answer));
+              // })
             ],
           ),
         ),

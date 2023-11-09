@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/widgets/giris_resmini_goster.dart';
+import 'widgets/app_bar.dart';
+import 'renkler.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen(this.onStartButtonPressed, {super.key}); // 1. gereksinim
@@ -10,33 +13,45 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.deepPurpleAccent,
+      appBar: appBarTasarim,
+      backgroundColor: Renkler().maviBir,
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             // asset
-            Image.asset(
-              "assets/images/flutter_app_logo.png",
-              width: 240,
-            ),
+            girisResmi,
             // Image.network(
             //     "https://miro.medium.com/v2/resize:fit:720/format:webp/1*FBRsnCP9wE84UVW1Kkv5Yw.jpeg"),
-            const Text("Quiz App",
+            Container(
+              child: const Text(
+                "Quiz App",
+                textAlign: TextAlign.center,
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 32,
                     fontWeight: FontWeight.bold,
-                    letterSpacing: 1.5)),
-            ElevatedButton(
-              onPressed: () {
-                onStartButtonPressed();
-              },
-              style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.amber, foregroundColor: Colors.black),
-              child: const Text(
-                "Oyuna Başla",
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    letterSpacing: 1.5),
+              ),
+            ),
+            Container(
+              decoration: const BoxDecoration(),
+              margin: const EdgeInsets.all(20),
+              child: ElevatedButton(
+                onPressed: () {
+                  onStartButtonPressed();
+                },
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Renkler().maviIki,
+                    foregroundColor: Renkler().maviBir),
+                child: const Text(
+                  "Oyuna Başla",
+                  style: TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                      decorationStyle: TextDecorationStyle.wavy),
+                ),
               ),
             )
           ],
