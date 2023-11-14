@@ -5,6 +5,7 @@ class ExpensesPage extends StatefulWidget {
   const ExpensesPage({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _ExpensesPageState createState() => _ExpensesPageState();
 }
 
@@ -53,7 +54,7 @@ class _ExpensesPageState extends State<ExpensesPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(10),
+      margin: const EdgeInsets.all(10),
       child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
