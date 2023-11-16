@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class NewExpense extends StatefulWidget {
   const NewExpense({Key? key}) : super(key: key);
@@ -48,7 +49,7 @@ class _NewExpenseState extends State<NewExpense> {
               icon: Icon(Icons.calendar_month),
             ),
             Text(
-                "Tarih Seçiniz: ${dateTime.toLocal()}"), // Display selected date
+                "Tarih Seçiniz: ${DateFormat.yMd().format(dateTime.toLocal())}"), // Display selected date
             ElevatedButton(
               onPressed: () {
                 print(
