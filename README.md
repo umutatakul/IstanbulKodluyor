@@ -1,3 +1,5 @@
+![Istanbul Kodluyor Resim](/assets/images/istanbulKodluyor.jpeg)
+
 # Istanbul Kodluyor
 
 Bu repository "Istanbul Kodluyor" projesinin dosyalarını içermektedir.
