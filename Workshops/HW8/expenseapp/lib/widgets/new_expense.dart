@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class NewExpense extends StatefulWidget {
-  const NewExpense(this._ekleExpense, {Key? key}) : super(key: key);
-  final void Function() _ekleExpense;
+  const NewExpense({super.key, required this.addNewExpense});
+  final void Function(Expense newExpense) addNewExpense;
   @override
-  // ignore: library_private_types_in_public_api, no_logic_in_create_state
-  _NewExpenseState createState() => _NewExpenseState(this._ekleExpense);
+  // ignore: library_private_types_in_public_api
+  _NewExpenseState createState() => _NewExpenseState();
 }
 
 class _NewExpenseState extends State<NewExpense> {
@@ -15,52 +15,22 @@ class _NewExpenseState extends State<NewExpense> {
   final _expensePriceController = TextEditingController();
   DateTime? _selectedDate;
   Category _selectedCategory = Category.work;
-  List<Expense> _denemeExpensesList = [];
-  _NewExpenseState(this._ekleExpense);
-  final void Function() _ekleExpense;
 
   void _openDatePicker() async {
     DateTime today = DateTime.now(); // 16.11.2023
     // 2022, 11, 16
     DateTime oneYearAgo = DateTime(today.year - 1, today.month, today.day);
-    // showDatePicker(
-    //         context: context,
-    //         initialDate: today,
-    //         firstDate: oneYearAgo,
-    //         lastDate: today)
-    // .then((value) {
-    //   async işlemden cevap ne zaman gelirse bu bloğu çalıştır..
-    //   print(value);
-    // });
-    // async function => await etmek
-    // nullable
-    // 14:20
     DateTime? selectedDate = await showDatePicker(
         context: context,
         initialDate: _selectedDate == null ? today : _selectedDate!,
         firstDate: oneYearAgo,
         lastDate: today);
-
-    ;
     setState(() {
       _selectedDate = selectedDate;
     });
     print("Merhaba");
     // sync => bir satır çalışmasını bitirmeden alt satıra geçemez.
     // async => async olan satır sadece tetiklenir kod aşağıya doğru çalışmaya devam eder
-  }
-
-  void ekleExpense() {
-    _denemeExpensesList.add(
-      Expense(
-        name: _expenseNameController.text,
-        price: double.tryParse(_expensePriceController.text) ?? 0.0,
-        date: _selectedDate ?? DateTime.now(),
-        category: _selectedCategory,
-      ),
-    );
-
-    print("ekleExpense() çalıştı");
   }
 
   // 3:20 discorddayız
@@ -128,25 +98,14 @@ class _NewExpenseState extends State<NewExpense> {
                 width: 12,
               ),
               ElevatedButton(
-                  onPressed: ()
-                      //{
-                      //   return ekleExpense();
-                      //   print(_denemeExpensesList);
-                      // }
-                      {
-                    ekleExpense();
-                    print(_denemeExpensesList.last.id);
-                    print(_denemeExpensesList.last.price);
-                    print(_denemeExpensesList.last.name);
-                    print(
-                      _denemeExpensesList.last.category.name,
-                    );
-                    print(
-                        DateFormat.yMd().format(_denemeExpensesList.last.date));
-
-                    print("ekle butonu çağırıldı");
-                    print(
-                        "Kaydedilen değer: ${_expenseNameController.text} ${_expensePriceController.text}");
+                  onPressed: () {
+                    Expense newExpense = Expense(
+                        name: _expenseNameController.text,
+                        price: double.parse(_expensePriceController.text),
+                        date: _selectedDate!,
+                        category: _selectedCategory);
+                    widget.addNewExpense(newExpense);
+                    Navigator.pop(context);
                   },
                   child: Text("Ekle")),
             ],
@@ -156,5 +115,3 @@ class _NewExpenseState extends State<NewExpense> {
     );
   }
 }
-// 15:00
-// pairlerdeyiz
