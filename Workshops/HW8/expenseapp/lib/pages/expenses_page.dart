@@ -13,6 +13,7 @@ class ExpensesPage extends StatefulWidget {
 
 class _ExpensesPageState extends State<ExpensesPage> {
   // callback fonksiyon
+
   // setState'i unutmayalım..
   List<Expense> expenses = [
     Expense(

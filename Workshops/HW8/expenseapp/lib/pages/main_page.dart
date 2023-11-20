@@ -23,7 +23,7 @@ class _MainPageState extends State<MainPage> {
                 showModalBottomSheet(
                     context: context,
                     builder: (ctx) {
-                      return NewExpense();
+                      return NewExpense(() {});
                     });
               },
               icon: const Icon(Icons.add))
