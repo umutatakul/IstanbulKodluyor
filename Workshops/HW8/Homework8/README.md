@@ -92,7 +92,7 @@ Flutter Container Widget, sayfa üzerindeki konumu, boyutu ve görünümü özel
 
 Bu özellikler sayesinde Flutter Container Widget, sayfa düzenini ve stilini özelleştirmek için oldukça esnek bir yapı sunar. Örneğin, bir metin kutusunu veya resmi içeren bir Container oluşturabilir ve bu Container'ı sayfanın istediğiniz konumuna yerleştirebilirsiniz.
 
-### Inkwell Classı
+## Inkwell Classı
 
 InkWell, dokunma ve tıklama gibi kullanıcı etkileşimlerini destekler ve bu etkileşimlere mürekkep dalgası efekti ekler.
 
