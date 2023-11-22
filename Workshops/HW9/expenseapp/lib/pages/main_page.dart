@@ -54,7 +54,7 @@ class _MainPageState extends State<MainPage> {
           )
         ],
       ),
-      body: ExpensesPage(expenses, removeExpense),
+      body: ExpensesPage(expenses, removeExpense, addExpense),
     );
   }
 }

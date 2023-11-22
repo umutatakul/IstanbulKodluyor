@@ -5,10 +5,11 @@ import 'package:expenseapp/widgets/expense_item.dart';
 import 'package:flutter/material.dart';
 
 class ExpensesPage extends StatefulWidget {
-  const ExpensesPage(this.expenses, this.onRemove, {Key? key})
+  const ExpensesPage(this.expenses, this.onRemove, this.onAddAgain, {Key? key})
       : super(key: key);
   final List<Expense> expenses;
   final void Function(Expense expense) onRemove;
+  final void Function(Expense expense) onAddAgain;
 
   @override
   _ExpensesPageState createState() => _ExpensesPageState();
@@ -40,11 +41,20 @@ class _ExpensesPageState extends State<ExpensesPage> {
                     //print(direction);
                     ExpenseItem expenseItem =
                         ExpenseItem(widget.expenses[index]);
-                    var snackBar = SnackBar(
+                    Expense sonSilinecek = widget.expenses[index];
+                    final snackBar = SnackBar(
                       content: Text(
                           "${expenseItem.expense.name} adlı ${expenseItem.expense.price} TL'lik harcamanız silinmiştir."),
+                      action: SnackBarAction(
+                        label: 'Geri al',
+                        onPressed: () {
+                          print(sonSilinecek.name);
+                          widget.onAddAgain(sonSilinecek);
+                        },
+                      ),
                     );
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
                     widget.onRemove(widget.expenses[index]);
                   },
                 );
