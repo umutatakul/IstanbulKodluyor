@@ -25,7 +25,8 @@ class _ExpensesPageState extends State<ExpensesPage> {
           child: Text(
             "Grafik Bölümü",
             style: Theme.of(context).textTheme.bodyMedium,
-          ), // titleLarge stilini alması,
+          ),
+          // titleLarge stilini alması,
         ),
         Expanded(
           child: ListView.builder(

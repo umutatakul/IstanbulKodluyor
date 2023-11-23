@@ -1,5 +1,6 @@
 import 'package:expenseapp/models/expense.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
 //14:10
@@ -15,7 +16,10 @@ class ExpenseItem extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(children: [
-          Text(expense.name),
+          Text(
+            expense.name,
+            style: GoogleFonts.graduate(),
+          ),
           Row(
             children: [
               Text(
