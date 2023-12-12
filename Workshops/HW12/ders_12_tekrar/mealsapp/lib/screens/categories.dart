@@ -31,7 +31,7 @@ class Categories extends StatelessWidget {
               Navigator.of(context)
                   .push(MaterialPageRoute(builder: (ctx) => Favorites()));
             },
-            icon: Icon(Icons.favorite_border),
+            icon: Icon(Icons.list),
           ),
         ],
       ),

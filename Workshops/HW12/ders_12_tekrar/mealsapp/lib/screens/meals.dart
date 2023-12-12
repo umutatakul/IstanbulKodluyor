@@ -16,8 +16,9 @@ class Meals extends ConsumerWidget {
     WidgetRef ref,
   ) {
     List<Meal> mealsFromState = ref.watch(mealsProvider);
-    List<Meal> meals =
-        mealList.where((element) => element.categoryId == category.id).toList();
+    List<Meal> meals = mealsFromState
+        .where((element) => element.categoryId == category.id)
+        .toList();
     Widget widget = ListView.builder(
       padding: const EdgeInsets.all(22),
       itemCount: meals.length,
