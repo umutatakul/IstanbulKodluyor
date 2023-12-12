@@ -16,19 +16,23 @@ class _MealDetailsState extends ConsumerState<MealDetails> {
     BuildContext context,
   ) {
     final favorites = ref.watch(favoriteMealsProvider);
+    //Icon icon1 = const Icon(Icons.favorite,color: Colors.red,);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.meal.name),
         actions: [
           IconButton(
-              onPressed: () {
-                ref
-                    .read(favoriteMealsProvider.notifier)
-                    .toggleMealFavorite(widget.meal);
-              },
-              icon: Icon(favorites.contains(widget.meal)
-                  ? Icons.favorite
-                  : Icons.favorite_border))
+            onPressed: () {
+              ref
+                  .read(favoriteMealsProvider.notifier)
+                  .toggleMealFavorite(widget.meal);
+            },
+            icon: Icon(favorites.contains(widget.meal)
+                ? Icons.favorite
+                : Icons.favorite_border),
+            color: favorites.contains(widget.meal) ? Colors.red : Colors.white,
+          )
         ],
       ),
     );
