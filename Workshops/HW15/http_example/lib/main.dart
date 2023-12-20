@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:http_example/screens/product_screen.dart';
 
 void main() {
-  runApp(const MaterialApp(
+  runApp(MaterialApp(
     home: Scaffold(
-      body: ProductScreen(),
+      appBar: AppBar(
+        title: const Text("Shop App"),
+      ),
+      body: const ProductScreen(),
     ),
   ));
 }
