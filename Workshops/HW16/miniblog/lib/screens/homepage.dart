@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import "package:http/http.dart" as http;
 import 'package:miniblog/models/blog.dart';
+import 'package:miniblog/screens/add_blog.dart';
 import 'package:miniblog/widgets/blog_item.dart';
 
 class Homepage extends StatefulWidget {
@@ -46,14 +47,25 @@ class _HomepageState extends State<Homepage> {
       appBar: AppBar(
         title: const Text("Blog Listesi"),
         actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.add)),
+          IconButton(
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (ctx) => AddBlog(),
+                ));
+              },
+              icon: const Icon(Icons.add)),
         ],
       ),
       body: blogList.isEmpty
           ? Center(child: CircularProgressIndicator())
-          : ListView.builder(
-              itemBuilder: (ctx, index) => BlogItem(blog: blogList[index]),
-              itemCount: blogList.length,
+          : RefreshIndicator(
+              onRefresh: () async {
+                fetchBlogs();
+              },
+              child: ListView.builder(
+                itemBuilder: (ctx, index) => BlogItem(blog: blogList[index]),
+                itemCount: blogList.length,
+              ),
             ),
     );
   }
