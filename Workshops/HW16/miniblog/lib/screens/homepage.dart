@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import "package:http/http.dart" as http;
 import 'package:miniblog/models/blog.dart';
 import 'package:miniblog/screens/add_blog.dart';
+import 'package:miniblog/screens/detail_page.dart';
 import 'package:miniblog/widgets/blog_item.dart';
 
 class Homepage extends StatefulWidget {
@@ -67,7 +68,15 @@ class _HomepageState extends State<Homepage> {
                 fetchBlogs();
               },
               child: ListView.builder(
-                itemBuilder: (ctx, index) => BlogItem(blog: blogList[index]),
+                itemBuilder: (ctx, index) => InkWell(
+                    onTap: () {
+                      print("Card'a tıklandı Inkwel widget çalıştı");
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) =>
+                            DetailPage(alinanId: blogList[index].id),
+                      ));
+                    },
+                    child: BlogItem(blog: blogList[index])),
                 itemCount: blogList.length,
               ),
             ),
