@@ -14,11 +14,13 @@ class BlogItem extends StatelessWidget {
         child: Column(
           children: [
             AspectRatio(
-                aspectRatio: 5 / 3,
-                child: Container(
-                    color: Colors.blue,
-                    width: double.infinity,
-                    child: Image.network(blog.thumbnail!))),
+              aspectRatio: 5 / 3,
+              child: Container(
+                color: Colors.blue,
+                width: double.infinity,
+                child: Image.network(blog.thumbnail!),
+              ),
+            ),
             ListTile(
               title: Text(blog.title!),
               subtitle: Text(blog.author!),

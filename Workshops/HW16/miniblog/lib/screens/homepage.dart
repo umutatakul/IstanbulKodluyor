@@ -71,10 +71,12 @@ class _HomepageState extends State<Homepage> {
                 itemBuilder: (ctx, index) => InkWell(
                     onTap: () {
                       print("Card'a tıklandı Inkwel widget çalıştı");
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) =>
-                            DetailPage(alinanId: blogList[index].id!),
-                      ));
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              DetailPage(alinanId: blogList[index].id!),
+                        ),
+                      );
                     },
                     child: BlogItem(blog: blogList[index])),
                 itemCount: blogList.length,
