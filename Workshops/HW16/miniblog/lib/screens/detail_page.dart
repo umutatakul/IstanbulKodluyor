@@ -44,33 +44,39 @@ class _DetailPageState extends State<DetailPage> {
               onRefresh: () async {
                 fetchDetails(widget.alinanId);
               },
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Container(
-                    color: Colors.blue,
-                    margin: EdgeInsets.all(12),
-                    child: AspectRatio(
-                        aspectRatio: 8 / 3,
-                        child: Image.network(detailList.thumbnail.toString())),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(border: Border.all()),
-                    child: Text(
-                      detailList.content.toString(),
-                      style: const TextStyle(fontSize: 36),
+              child: Container(
+                margin: EdgeInsets.all(12),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Container(
+                      color: Colors.blue,
+                      margin: EdgeInsets.all(12),
+                      child: AspectRatio(
+                          aspectRatio: 8 / 3,
+                          child:
+                              Image.network(detailList.thumbnail.toString())),
                     ),
-                  ),
-                  Text(
-                    "Yazar : ${detailList.author.toString()}",
-                    style: const TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        decoration: TextDecoration.underline,
-                        decorationThickness: 2,
-                        decorationStyle: TextDecorationStyle.solid),
-                  ),
-                ],
+                    Container(
+                      padding: EdgeInsets.all(12),
+                      decoration: BoxDecoration(border: Border.all()),
+                      child: Text(
+                        textAlign: TextAlign.center,
+                        detailList.content.toString(),
+                        style: const TextStyle(fontSize: 36),
+                      ),
+                    ),
+                    Text(
+                      "Yazar : ${detailList.author.toString()}",
+                      style: const TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          decoration: TextDecoration.underline,
+                          decorationThickness: 2,
+                          decorationStyle: TextDecorationStyle.solid),
+                    ),
+                  ],
+                ),
               ),
             ),
     );
