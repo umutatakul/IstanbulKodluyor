@@ -73,7 +73,7 @@ class _HomepageState extends State<Homepage> {
                       print("Card'a tıklandı Inkwel widget çalıştı");
                       Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) =>
-                            DetailPage(alinanId: blogList[index].id),
+                            DetailPage(alinanId: blogList[index].id!),
                       ));
                     },
                     child: BlogItem(blog: blogList[index])),

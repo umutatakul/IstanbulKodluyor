@@ -6,14 +6,14 @@ import 'package:miniblog/models/detail.dart';
 
 class DetailPage extends StatefulWidget {
   const DetailPage({super.key, required this.alinanId});
-  final alinanId;
+  final String alinanId;
 
   @override
   State<DetailPage> createState() => _DetailPageState();
 }
 
 class _DetailPageState extends State<DetailPage> {
-  List<Detail> detailList = [];
+  Detail detailList = Detail();
 
   @override
   void initState() {
@@ -25,9 +25,10 @@ class _DetailPageState extends State<DetailPage> {
     Uri url = Uri.parse(
         "https://tobetoapi.halitkalayci.com/api/Articles/${widget.alinanId}");
     final response = await http.get(url);
-    final List jsonData = json.decode(response.body);
+    final jsonData = json.decode(response.body);
     setState(() {
-      detailList = jsonData.map((json) => Detail.fromJson(json)).toList();
+      detailList = Detail.fromJson(jsonData);
+      //detailList = jsonData.map((json) => Detail.fromJson(json)).toList();
     });
   }
 
@@ -35,10 +36,10 @@ class _DetailPageState extends State<DetailPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Detay sayfası"),
+        title: const Text("Detay sayfası"),
       ),
-      body: detailList.isEmpty
-          ? Center(child: CircularProgressIndicator())
+      body: detailList.toString().isEmpty
+          ? const Center(child: CircularProgressIndicator())
           : RefreshIndicator(
               onRefresh: () async {
                 fetchDetails(widget.alinanId);
